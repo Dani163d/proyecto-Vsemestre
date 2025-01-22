@@ -1,0 +1,455 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #4f46e5;
+    --secondary: #818cf8;
+    --background: #1e1b4b;
+    --text: #f3f4f6;
+    --hover: #6366f1;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #0f172a;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.nav-toggle {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -10px;
+    width: 60px;
+    height: 140px;
+    background: var(--primary);
+    border-radius: 0 70px 70px 0;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 12px;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.nav-toggle:hover {
+    background: var(--hover);
+    left: -5px;
+}
+
+.nav-toggle i {
+    color: var(--text);
+    font-size: 1.5rem;
+    transition: transform 0.4s ease;
+}
+
+.nav-toggle.active {
+    left: -70px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.nav-toggle.active i {
+    transform: rotate(180deg);
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background: var(--background);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    padding: 2rem;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.navbar.active {
+    left: 0;
+}
+
+.nav-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.nav-close:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+.navbar-content {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    margin-top: 2rem;
+}
+
+.navbar.active .navbar-content {
+    opacity: 1;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-logo i {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.nav-logo span {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-item {
+    margin-bottom: 0.5rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.nav-link i {
+    width: 24px;
+    color: var(--secondary);
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.nav-link:hover i {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.nav-footer {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-footer-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.nav-footer-link:hover {
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.navbar.active .nav-item {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.navbar.active .nav-item:nth-child(1) { animation-delay: 0.1s; }
+.navbar.active .nav-item:nth-child(2) { animation-delay: 0.2s; }
+.navbar.active .nav-item:nth-child(3) { animation-delay: 0.3s; }
+.navbar.active .nav-item:nth-child(4) { animation-delay: 0.4s; }
+.navbar.active .nav-item:nth-child(5) { animation-delay: 0.5s; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #0f172a;
+    min-height: 100vh;
+    padding: 2rem;
+    color: var(--text);
+    perspective: 1000px;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.main-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+.careers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.career-card {
+    height: 400px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.career-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    padding: 2rem;
+    background: rgba(30, 27, 75, 0.8);
+    backdrop-filter: blur(10px);
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.card-front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.career-icon {
+    font-size: 3.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.career-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1rem;
+}
+
+.flip-hint {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--secondary);
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.career-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+    opacity: 0.9;
+}
+
+.career-stats {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.stat {
+    text-align: center;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.star-checkbox {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: #9ca3af;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.star-checkbox:hover {
+    transform: scale(1.1);
+    color: #ffd700;
+}
+
+.career-card.selected .star-checkbox {
+    color: #ffd700;
+}
+
+.selected-count {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--primary);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transform: translateY(100px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.selected-count.show {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .careers-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .career-card {
+        height: 350px;
+    }
+}
+
+.view-branches {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+padding: 0.5rem 1rem;
+background: var(--primary);
+color: var(--text);
+border-radius: 20px;
+text-decoration: none;
+font-size: 0.9rem;
+transition: all 0.3s ease;
+margin-top: 1rem;
+position: relative;
+z-index: 3;
+}
+
+.view-branches:hover {
+background: var(--hover);
+transform: translateY(-2px);
+box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+.view-branches i {
+font-size: 1rem;
+}
+
+/* Modificar el estilo del card-front para acomodar mejor los elementos */
+.card-front {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 1rem;
+padding: 1.5rem;
+}
+
+.flip-hint {
+margin-top: auto;
+}
+
+.front-buttons {
+display: flex;
+gap: 1rem;
+margin-top: 1rem;
+}
