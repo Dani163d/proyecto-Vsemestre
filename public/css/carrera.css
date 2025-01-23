@@ -6,11 +6,11 @@
 }
 
 :root {
-    --primary: #4f46e5;
+    --primary: #f79840;
     --secondary: #818cf8;
     --background: #1e1b4b;
     --text: #f3f4f6;
-    --hover: #6366f1;
+    --hover: #f79840;
 }
 
 body {
@@ -27,7 +27,7 @@ body {
     left: -10px;
     width: 60px;
     height: 140px;
-    background: var(--primary);
+    background: #f79840;
     border-radius: 0 70px 70px 0;
     cursor: pointer;
     z-index: 1000;
@@ -40,7 +40,7 @@ body {
 }
 
 .nav-toggle:hover {
-    background: var(--hover);
+    background: #ac600b;
     left: -5px;
 }
 
@@ -117,7 +117,7 @@ body {
 
 .nav-logo i {
     font-size: 2rem;
-    color: var(--primary);
+    color: #f79840;
 }
 
 .nav-logo span {
@@ -147,7 +147,7 @@ body {
 
 .nav-link i {
     width: 24px;
-    color: var(--secondary);
+    color: #f79840;
 }
 
 .nav-link:hover {
@@ -156,7 +156,7 @@ body {
 }
 
 .nav-link:hover i {
-    color: var(--primary);
+    color: #ac600b;
     transform: scale(1.1);
 }
 
@@ -224,17 +224,7 @@ body {
     padding-bottom: 1rem;
 }
 
-.main-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 4px;
-    background: var(--primary);
-    border-radius: 2px;
-}
+
 
 .careers-grid {
     display: grid;
@@ -274,7 +264,7 @@ body {
     padding: 2rem;
     background: rgba(30, 27, 75, 0.8);
     backdrop-filter: blur(10px);
-    border: 2px solid transparent;
+    /* border: 2px solid transparent; */
     transition: border-color 0.3s ease;
 }
 
@@ -296,7 +286,7 @@ body {
 
 .career-icon {
     font-size: 3.5rem;
-    color: var(--primary);
+    color: #f79840;
     margin-bottom: 1rem;
 }
 
@@ -377,7 +367,7 @@ body {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    background: var(--primary);
+    background: #f79840;
     padding: 1rem 2rem;
     border-radius: 50px;
     box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
@@ -413,7 +403,7 @@ display: inline-flex;
 align-items: center;
 gap: 0.5rem;
 padding: 0.5rem 1rem;
-background: var(--primary);
+background: #f79840;
 color: var(--text);
 border-radius: 20px;
 text-decoration: none;
@@ -425,7 +415,7 @@ z-index: 3;
 }
 
 .view-branches:hover {
-background: var(--hover);
+background: #ac600b;
 transform: translateY(-2px);
 box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
 }
@@ -434,18 +424,9 @@ box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
 font-size: 1rem;
 }
 
-/* Modificar el estilo del card-front para acomodar mejor los elementos */
-.card-front {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 1rem;
-padding: 1.5rem;
-}
-
 .flip-hint {
 margin-top: auto;
+color: #7c6955;
 }
 
 .front-buttons {

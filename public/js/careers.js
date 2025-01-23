@@ -1,39 +1,60 @@
 const careers = [
     {
         icon: 'fas fa-briefcase',
-        title: 'Administracion',
-        description: 'Desarrolla soluciones tecnológicas y lidera la transformación digital en las organizaciones. Aprende programación, diseño de sistemas y gestión de proyectos tecnológicos.',
+        title: 'Administración',
+        description: 'Es el proceso de planificar, organizar, dirigir y controlar los recursos de una organización para alcanzar sus objetivos de manera eficiente y efectiva. Incluye diversas áreas como la gestión de recursos humanos, finanzas, marketing y operaciones.',
         duration: '5 años'
     },
     {
         icon: 'fas fa-calculator',
         title: 'Contaduria',
-        description: 'Innova en el campo de la ciencia y desarrolla soluciones para mejorar la calidad de vida. Investiga en genética, microbiología y procesos biotecnológicos.',
+        description: 'Es la práctica de medir, analizar y comunicar información financiera. Los contadores se encargan de llevar registros precisos de las transacciones económicas, preparar estados financieros, y asegurar el cumplimiento de normativas fiscales.',
         duration: '5 años'
     },
     {
         icon: 'fas fa-book-open',
-        title: 'Educacion',
-        description: 'Comprende el comportamiento humano y ayuda a mejorar la salud mental de las personas. Estudia procesos mentales, terapias y desarrollo humano.',
+        title: 'Educación',
+        description: 'Se centra en la formación de profesionales que se encargan del desarrollo y aprendizaje de niños en las primeras etapas de su vida.',
         duration: '5 años'
     },
     {
         icon: 'fas fa-plug',
-        title: 'Electronica',
-        description: 'Defiende la justicia y los derechos fundamentales en la sociedad moderna. Especialízate en diferentes áreas del derecho y contribuye al sistema legal.',
+        title: 'Electrónica',
+        description: 'Se ocupa del estudio y aplicación de dispositivos y sistemas que controlan el flujo de electrones. Se centra en el diseño, análisis y fabricación de circuitos electrónicos.',
         duration: '5 años'
     },
     {
         icon: 'fas fa-laptop-code',
-        title: 'Informatica',
-        description: 'Analiza y gestiona recursos para impulsar el desarrollo económico sostenible. Estudia mercados, políticas económicas y desarrollo social.',
+        title: 'Informática',
+        description: 'Se ocupa del diseño y desarrollo de software, la gestión de bases de datos, la ciberseguridad y la implementación de tecnologías para resolver problemas y optimizar procesos.',
         duration: '4 años'
     }
 ];
 
+// Tema oscuro/claro
+const themeToggle = document.querySelector('.theme-toggle');
+const themeIcon = themeToggle.querySelector('i');
+const html = document.documentElement;
+
+// Cargar tema guardado
+const savedTheme = localStorage.getItem('theme') || 'dark';
+html.setAttribute('data-theme', savedTheme);
+themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+// Toggle tema
+themeToggle.addEventListener('click', () => {
+    const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    localStorage.setItem('theme', newTheme);
+});
+
 const careersGrid = document.querySelector('.careers-grid');
 const selectedCount = document.querySelector('.selected-count');
 let selectedCareers = 0;
+
+// Cargar carreras seleccionadas
+const savedSelections = JSON.parse(localStorage.getItem('selectedCareers') || '[]');
 
 careers.forEach(career => {
     const careerCard = document.createElement('div');
@@ -70,6 +91,14 @@ careers.forEach(career => {
     const starCheckbox = careerCard.querySelector('.star-checkbox');
     const cardInner = careerCard.querySelector('.card-inner');
 
+    // Restaurar selecciones guardadas
+    if (savedSelections.includes(career.title)) {
+        careerCard.classList.add('selected');
+        starCheckbox.classList.remove('far');
+        starCheckbox.classList.add('fas');
+        selectedCareers++;
+    }
+
     careerCard.addEventListener('click', (e) => {
         if (!e.target.classList.contains('star-checkbox')) {
             careerCard.classList.toggle('flipped');
@@ -90,6 +119,7 @@ careers.forEach(career => {
             selectedCareers--;
         }
 
+        // Actualizar contador y guardar selecciones
         selectedCount.querySelector('span').textContent = 
             `${selectedCareers} carrera${selectedCareers !== 1 ? 's' : ''} seleccionada${selectedCareers !== 1 ? 's' : ''}`;
         
@@ -98,6 +128,11 @@ careers.forEach(career => {
         } else {
             selectedCount.classList.remove('show');
         }
+
+        // Guardar selecciones en localStorage
+        const currentSelections = Array.from(document.querySelectorAll('.career-card.selected'))
+            .map(card => card.querySelector('.career-title').textContent);
+        localStorage.setItem('selectedCareers', JSON.stringify(currentSelections));
     });
 
     starCheckbox.addEventListener('mouseover', () => {
@@ -114,6 +149,13 @@ careers.forEach(career => {
         }
     });
 });
+
+// Mostrar contador inicial si hay selecciones
+if (selectedCareers > 0) {
+    selectedCount.querySelector('span').textContent = 
+        `${selectedCareers} carrera${selectedCareers !== 1 ? 's' : ''} seleccionada${selectedCareers !== 1 ? 's' : ''}`;
+    selectedCount.classList.add('show');
+}
 
 document.querySelectorAll('.view-branches').forEach(link => {
     link.addEventListener('click', (e) => {
