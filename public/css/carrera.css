@@ -48,7 +48,7 @@ body {
     left: -10px;
     width: 60px;
     height: 140px;
-    background: #f79840;
+    background:  linear-gradient(135deg, #f79840 0%, #ff6b6b 100%);
     border-radius: 0 70px 70px 0;
     cursor: pointer;
     z-index: 1000;
@@ -356,7 +356,7 @@ body {
 .stat-value {
     font-size: 1.2rem;
     font-weight: 600;
-    color: var(--primary);
+    color: #f79840;
 }
 
 .stat-label {
@@ -388,7 +388,7 @@ body {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    background: #f79840;
+    background:  linear-gradient(135deg, #f79840 0%, #ff6b6b 100%);
     padding: 1rem 2rem;
     border-radius: 50px;
     box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
@@ -398,6 +398,7 @@ body {
     transform: translateY(100px);
     transition: all 0.3s ease;
     z-index: 1000;
+    box-shadow: 0 4px 15px rgba(247, 152, 64, 0.3);
 }
 
 .selected-count.show {
@@ -424,7 +425,7 @@ display: inline-flex;
 align-items: center;
 gap: 0.5rem;
 padding: 0.5rem 1rem;
-background: #f79840;
+background:  linear-gradient(135deg, #f79840 0%, #ff6b6b 100%);
 color: var(--text);
 border-radius: 20px;
 text-decoration: none;
@@ -433,6 +434,7 @@ transition: all 0.3s ease;
 margin-top: 1rem;
 position: relative;
 z-index: 3;
+box-shadow: 0 4px 15px rgba(247, 152, 64, 0.3);
 }
 
 .view-branches:hover {

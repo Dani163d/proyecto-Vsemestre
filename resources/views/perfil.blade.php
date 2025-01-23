@@ -45,7 +45,7 @@
             position: fixed;
             top: 2rem;
             right: 2rem;
-            background: #f79840;
+            background:  linear-gradient(135deg, #f79840 0%, #ff6b6b 100%);
             width: 45px;
             height: 45px;
             border-radius: 50%;
@@ -54,7 +54,7 @@
             justify-content: center;
             cursor: pointer;
             z-index: 1000;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(247, 152, 64, 0.3);
             transition: all 0.3s ease;
         }
 

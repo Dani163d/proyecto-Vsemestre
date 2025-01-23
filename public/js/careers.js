@@ -3,31 +3,31 @@ const careers = [
         icon: 'fas fa-briefcase',
         title: 'Administración',
         description: 'Es el proceso de planificar, organizar, dirigir y controlar los recursos de una organización para alcanzar sus objetivos de manera eficiente y efectiva. Incluye diversas áreas como la gestión de recursos humanos, finanzas, marketing y operaciones.',
-        duration: '5 años'
+        duration: 'Dos años y medio'
     },
     {
         icon: 'fas fa-calculator',
-        title: 'Contaduria',
+        title: 'Contaduría',
         description: 'Es la práctica de medir, analizar y comunicar información financiera. Los contadores se encargan de llevar registros precisos de las transacciones económicas, preparar estados financieros, y asegurar el cumplimiento de normativas fiscales.',
-        duration: '5 años'
+        duration: 'Dos años y medio'
     },
     {
         icon: 'fas fa-book-open',
         title: 'Educación',
         description: 'Se centra en la formación de profesionales que se encargan del desarrollo y aprendizaje de niños en las primeras etapas de su vida.',
-        duration: '5 años'
+        duration: 'Dos años y medio'
     },
     {
         icon: 'fas fa-plug',
         title: 'Electrónica',
         description: 'Se ocupa del estudio y aplicación de dispositivos y sistemas que controlan el flujo de electrones. Se centra en el diseño, análisis y fabricación de circuitos electrónicos.',
-        duration: '5 años'
+        duration: 'Dos años y medio'
     },
     {
         icon: 'fas fa-laptop-code',
         title: 'Informática',
         description: 'Se ocupa del diseño y desarrollo de software, la gestión de bases de datos, la ciberseguridad y la implementación de tecnologías para resolver problemas y optimizar procesos.',
-        duration: '4 años'
+        duration: 'Dos años y medio'
     }
 ];
 

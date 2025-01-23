@@ -2,16 +2,6 @@
 
 @section('styles')
 <style>
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
 
         :root {
             --text-color: #f3f4f6;
@@ -72,7 +62,6 @@
         }
 
         .back-button:hover {
-            transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(247, 152, 64, 0.4);
         }
 
@@ -88,10 +77,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(247, 152, 64, 0.3);
-        }
-
-        .theme-toggle:hover {
-            transform: rotate(180deg) scale(1.1);
         }
 
         .career-title {
@@ -146,7 +131,6 @@
         }
 
         .branch-card:hover {
-            transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
         }
 
@@ -168,7 +152,6 @@
         }
 
         .branch-card:hover .branch-icon {
-            transform: scale(1.2) rotate(360deg);
             color: var(--hover-color);
         }
 
