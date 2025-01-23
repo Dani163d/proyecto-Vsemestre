@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\RamasController;
 use App\Http\Controllers\RespuestaSeguridadController;
 use App\Http\Controllers\RecuperarContrasenaController;
 
@@ -75,3 +76,4 @@ Route::get('recuperar-contraseña', function() {
     return view('recuperar-contrasena');
 })->name('recuperar-contraseña');
 
+Route::get('/ramas/{carrera}', [RamasController::class, 'showBranches'])->name('ramas.show');

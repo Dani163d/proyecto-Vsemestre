@@ -160,6 +160,7 @@
         <i class="fas fa-star"></i>
         <span>0 carreras seleccionadas</span>
     </div>
+    
 
     <script src="{{ asset('js/navigation.js') }}"></script>
     <script src="{{ asset('js/careers.js') }}"></script>
@@ -187,5 +188,6 @@
             });
         }
     </script>
+    
 </body>
 </html>

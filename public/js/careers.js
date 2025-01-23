@@ -65,7 +65,7 @@ careers.forEach(career => {
             <div class="card-front">
                 <i class="${career.icon} career-icon"></i>
                 <h3 class="career-title">${career.title}</h3>
-                <a href="ramas.html" class="view-branches" onclick="event.stopPropagation()">
+                <a href="/ramas/${encodeURIComponent(career.title)}" class="view-branches" onclick="event.stopPropagation()">
                     <i class="fas fa-code-branch"></i>
                     <span>Ver Ramas</span>
                 </a>
@@ -157,11 +157,3 @@ if (selectedCareers > 0) {
     selectedCount.classList.add('show');
 }
 
-document.querySelectorAll('.view-branches').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const careerTitle = e.target.closest('.card-front').querySelector('.career-title').textContent;
-        const encodedTitle = encodeURIComponent(careerTitle);
-        window.location.href = `ramas.html?carrera=${encodedTitle}`;
-    });
-});
