@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <title>OrientaPro</title>
     <link rel="stylesheet" href="{{ asset('css/carrera.css') }}">
-</head>
     <style>
         :root {
             --primary: #4f46e5;
@@ -27,7 +26,6 @@
             --hover: #4338ca;
         }
 
-        /* Tu CSS original aquí, solo cambié estas propiedades específicas */
         .navbar {
             background: var(--background);
             backdrop-filter: blur(10px);
@@ -43,7 +41,6 @@
             background: var(--background);
         }
 
-        /* Estilos para el botón de tema */
         .theme-toggle {
             position: fixed;
             top: 2rem;
@@ -71,16 +68,28 @@
             font-size: 1.2rem;
         }
 
-        /* Asegúrate de que las transiciones sean suaves */
         * {
             transition: background-color 0.3s ease, color 0.3s ease;
         }
+
+        .nav-footer-link {
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-footer-link:hover {
+            background-color: #f79840;
+            border-radius: 5px;
+        }
     </style>
-    
-</body>
-</html>
+</head>
 <body>
-    <!-- Botón de tema -->
     <div class="theme-toggle">
         <i class="fas fa-sun"></i>
     </div>
@@ -133,12 +142,14 @@
             </ul>
 
             <div class="nav-footer">
-                <a href="#" class="nav-footer-link">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Cerrar Sesión</span>
-                </a>
-            </div>
-        </div>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+        <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-footer-link" style="cursor: pointer;">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Cerrar Sesión</span>
+        </a>
+    </div>
     </nav>
     <h1 class="main-title">Explora tu Futuro Profesional</h1>
 
@@ -149,7 +160,32 @@
         <i class="fas fa-star"></i>
         <span>0 carreras seleccionadas</span>
     </div>
+
     <script src="{{ asset('js/navigation.js') }}"></script>
     <script src="{{ asset('js/careers.js') }}"></script>
+    <script>
+        function logout() {
+            // Primero realizamos una petición al endpoint de logout
+            fetch('/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
+                },
+                credentials: 'same-origin' // Importante para las cookies de sesión
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Si el logout fue exitoso, redirigimos al login
+                    window.location.href = '/registro';
+                } else {
+                    console.error('Error al cerrar sesión');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
 </body>
 </html>
