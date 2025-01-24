@@ -396,6 +396,13 @@ body {
     box-shadow: 0 4px 15px rgba(247, 152, 64, 0.3);
 }
 
+/* Modo claro */
+[data-theme="light"] .selected-count {
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    color: #1e293b; /* Texto oscuro para modo claro */
+    box-shadow: 0 4px 15px rgba(203, 213, 225, 0.5);
+}
+
 .selected-count.show {
     transform: translateY(0);
 }
