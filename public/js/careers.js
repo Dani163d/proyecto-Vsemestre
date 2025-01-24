@@ -78,7 +78,7 @@ careers.forEach(career => {
                 <h3 class="career-title">${career.title}</h3>
                 <a href="/ramas/${encodeURIComponent(career.title)}" class="view-branches" onclick="event.stopPropagation()">
                     <i class="fas fa-code-branch"></i>
-                    <span>Ver Ramas</span>
+                    <span>Ver Menciones</span>
                 </a>
                 <div class="flip-hint">
                     <i class="fas fa-sync-alt"></i>
