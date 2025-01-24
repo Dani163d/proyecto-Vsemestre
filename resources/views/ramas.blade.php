@@ -39,8 +39,6 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 3rem;
-            padding: 1rem;
-            background: var(--gradient-2);
             border-radius: 1rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }

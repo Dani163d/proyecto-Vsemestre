@@ -85,6 +85,8 @@ careers.forEach(career => {
                 </div>
             </div>
         </div>
+
+        
     `;
     careersGrid.appendChild(careerCard);
 
@@ -118,7 +120,7 @@ careers.forEach(career => {
             starCheckbox.classList.add('far');
             selectedCareers--;
         }
-
+    
         // Actualizar contador y guardar selecciones
         selectedCount.querySelector('span').textContent = 
             `${selectedCareers} carrera${selectedCareers !== 1 ? 's' : ''} seleccionada${selectedCareers !== 1 ? 's' : ''}`;
@@ -128,7 +130,11 @@ careers.forEach(career => {
         } else {
             selectedCount.classList.remove('show');
         }
-
+    
+        // Manejar el botón de continuar
+        const continueButton = document.getElementById('continueButton');
+        continueButton.disabled = selectedCareers !== 3;
+    
         // Guardar selecciones en localStorage
         const currentSelections = Array.from(document.querySelectorAll('.career-card.selected'))
             .map(card => card.querySelector('.career-title').textContent);
@@ -156,4 +162,61 @@ if (selectedCareers > 0) {
         `${selectedCareers} carrera${selectedCareers !== 1 ? 's' : ''} seleccionada${selectedCareers !== 1 ? 's' : ''}`;
     selectedCount.classList.add('show');
 }
+document.getElementById('continueButton').addEventListener('click', () => {
+    // Aquí puedes añadir la lógica para continuar con el proceso
+    // Por ejemplo, redirigir a otra página o mostrar el siguiente paso
+    console.log('Continuar con las 3 carreras seleccionadas');
+});
+
+
+
+function logout() {
+    // Primero realizamos una petición al endpoint de logout
+    fetch('/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
+        },
+        credentials: 'same-origin' // Importante para las cookies de sesión
+    })
+    .then(response => {
+        if (response.ok) {
+            // Si el logout fue exitoso, redirigimos al login
+            window.location.href = '/registro';
+        } else {
+            console.error('Error al cerrar sesión');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+// Función para cerrar el modal
+function closeModal() {
+    document.getElementById('modalOverlay').style.display = 'none';
+}
+
+// Resto del código JavaScript sin cambios
+function logout() {
+    fetch('/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
+        },
+        credentials: 'same-origin'
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = '/registro';
+        } else {
+            console.error('Error al cerrar sesión');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
 

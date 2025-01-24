@@ -7,89 +7,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <title>OrientaPro</title>
     <link rel="stylesheet" href="{{ asset('css/carrera.css') }}">
-    <style>
-        :root {
-            --primary: #4f46e5;
-            --secondary: #818cf8;
-            --background: #1e1b4b;
-            --body-bg: #0f172a;
-            --text: #f3f4f6;
-            --hover: #6366f1;
-        }
-
-        [data-theme="light"] {
-            --primary: #4f46e5;
-            --secondary: #6366f1;
-            --background: #f1f5f9;
-            --body-bg: #ffffff;
-            --text: #1e293b;
-            --hover: #4338ca;
-        }
-
-        .navbar {
-            background: var(--background);
-            backdrop-filter: blur(10px);
-        }
-
-        body {
-            background: var(--body-bg);
-            color: var(--text);
-        }
-
-        .card-front,
-        .card-back {
-            background: var(--background);
-        }
-
-        .theme-toggle {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            background:  linear-gradient(135deg, #f79840 0%, #ff6b6b 100%);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(247, 152, 64, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            background: #f79840;
-        }
-
-        .theme-toggle i {
-            color: var(--text);
-            font-size: 1.2rem;
-        }
-
-        * {
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .nav-footer-link {
-            cursor: pointer;
-            text-decoration: none;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-footer-link:hover {
-            background-color: #f79840;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
+    <!-- Modal de instrucciones -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="instructions-modal">
+            <h2 class="instructions-title">¡Bienvenido a OrientaPro!</h2>
+            <ul class="instructions-list">
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Explora las diferentes carreras disponibles y selecciona las que te interesen.</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Selecciona un mínimo de 3 carreras para poder realizar el test vocacional.</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Una vez seleccionadas las carreras, presiona el botón "Realizar test" para continuar.</span>
+                </li>
+            </ul>
+            <button class="close-modal-btn" onclick="closeModal()">Entendido</button>
+        </div>
+    </div>
+
     <div class="theme-toggle">
         <i class="fas fa-sun"></i>
     </div>
@@ -154,40 +95,17 @@
     <h1 class="main-title">Explora tu Futuro Profesional</h1>
 
     <div class="careers-grid">
-    </div>
+</div>
 
-    <div class="selected-count">
-        <i class="fas fa-star"></i>
-        <span>0 carreras seleccionadas</span>
-    </div>
-    
+<div class="selected-count">
+    <i class="fas fa-star"></i>
+    <span>0 carreras seleccionadas</span>
+    <button id="continueButton" class="continue-button" disabled>
+        Realizar test
+    </button>
+</div>
 
     <script src="{{ asset('js/navigation.js') }}"></script>
     <script src="{{ asset('js/careers.js') }}"></script>
-    <script>
-        function logout() {
-            // Primero realizamos una petición al endpoint de logout
-            fetch('/logout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
-                },
-                credentials: 'same-origin' // Importante para las cookies de sesión
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Si el logout fue exitoso, redirigimos al login
-                    window.location.href = '/registro';
-                } else {
-                    console.error('Error al cerrar sesión');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-    </script>
-    
 </body>
 </html>
