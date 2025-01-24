@@ -31,6 +31,17 @@ const careers = [
     }
 ];
 
+// Verificar nueva sesión al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    const isNewSession = localStorage.getItem('isNewSession');
+    const modalOverlay = document.getElementById('modalOverlay');
+    
+    if (isNewSession === 'true' && modalOverlay) {
+        modalOverlay.style.display = 'flex';
+        localStorage.setItem('isNewSession', 'false');
+    }
+});
+
 // Tema oscuro/claro
 const themeToggle = document.querySelector('.theme-toggle');
 const themeIcon = themeToggle.querySelector('i');
@@ -85,8 +96,6 @@ careers.forEach(career => {
                 </div>
             </div>
         </div>
-
-        
     `;
     careersGrid.appendChild(careerCard);
 
@@ -162,42 +171,35 @@ if (selectedCareers > 0) {
         `${selectedCareers} carrera${selectedCareers !== 1 ? 's' : ''} seleccionada${selectedCareers !== 1 ? 's' : ''}`;
     selectedCount.classList.add('show');
 }
+
 document.getElementById('continueButton').addEventListener('click', () => {
-    // Aquí puedes añadir la lógica para continuar con el proceso
-    // Por ejemplo, redirigir a otra página o mostrar el siguiente paso
     console.log('Continuar con las 3 carreras seleccionadas');
 });
 
-
-
-function logout() {
-    // Primero realizamos una petición al endpoint de logout
-    fetch('/logout', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
-        },
-        credentials: 'same-origin' // Importante para las cookies de sesión
-    })
-    .then(response => {
-        if (response.ok) {
-            // Si el logout fue exitoso, redirigimos al login
-            window.location.href = '/registro';
-        } else {
-            console.error('Error al cerrar sesión');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
 // Función para cerrar el modal
 function closeModal() {
-    document.getElementById('modalOverlay').style.display = 'none';
+    const modalOverlay = document.getElementById('modalOverlay');
+    if (modalOverlay) {
+        modalOverlay.style.display = 'none';
+    }
 }
 
-// Resto del código JavaScript sin cambios
+// Función para mostrar instrucciones manualmente
+function showInstructions() {
+    const modalOverlay = document.getElementById('modalOverlay');
+    if (modalOverlay) {
+        modalOverlay.style.display = 'flex';
+    }
+}
+
+// Cerrar modal al hacer clic fuera
+document.addEventListener('click', function(event) {
+    const modalOverlay = document.getElementById('modalOverlay');
+    if (event.target === modalOverlay) {
+        closeModal();
+    }
+});
+
 function logout() {
     fetch('/logout', {
         method: 'POST',
@@ -209,6 +211,8 @@ function logout() {
     })
     .then(response => {
         if (response.ok) {
+            // Limpiar el estado de nueva sesión al cerrar sesión
+            localStorage.removeItem('isNewSession');
             window.location.href = '/registro';
         } else {
             console.error('Error al cerrar sesión');
@@ -218,5 +222,3 @@ function logout() {
         console.error('Error:', error);
     });
 }
-
-
