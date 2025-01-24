@@ -14,7 +14,7 @@
         </button>
     </div>
 
-    <h1 class="career-title">Ramas de {{ $carrera }}</h1>
+    <h1 class="career-title">Menciones de {{ $carrera }}</h1>
 
     <div class="branches-grid">
         @foreach($branches as $branch)
