@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Class Usuario
@@ -19,10 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $ContrasenaUsuario
  * @property string $FechaNacimientoUsuario
  * @property int $CedulaUsuario
- * @property string $DireccionUsuario
- * @property string $DescripcionUsuario
  * @property int $Generos_idGenero
- * @property int $Nacionalidades_idNacionalidad
  * @property bool $verificado
  * 
  * @property Genero $genero
@@ -35,6 +33,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Usuario extends Model
 {
+	use HasRoles; 
 	protected $table = 'usuarios';
 	protected $primaryKey = 'idUsuario';
 	public $timestamps = false;

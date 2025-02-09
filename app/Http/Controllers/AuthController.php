@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-
 use App\Models\Usuario;
 use App\Models\Token;
 use App\Models\Respuestasseguridad;
@@ -13,34 +11,40 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 { 
-    public function verificarEmail($token)
+        public function __construct()
     {
-        $token = Token::where('Token', $token)
-                     ->where('TipoToken', 'verify')
-                     ->where('Usado', 0)
-                     ->where('TiempoExpiracion', '>', now())
-                     ->first();
+        // Solo el admin podrá acceder a estas rutas
+        $this->middleware('role:admin')->only(['admin.dashboard']);
 
-        if (!$token) {
-            return redirect()->route('registro')
-                ->with('error', 'Token de verificación inválido o expirado');
-        }
-
-        $usuario = $token->usuario;
-            if (!$usuario) {
-                return redirect()->route('registro')
-                    ->with('error', 'Usuario no encontrado');
-            }
-
-        $usuario->update(['verificado' => 1]);
-        
-        $token->Usado = 1;
-        $token->save();
-
-        return redirect()->route('registro')
-            ->with('success', 'Email verificado correctamente. Ya puedes iniciar sesión.');
     }
+public function verificarEmail($token)
+{
+    $token = Token::where('Token', $token)
+                 ->where('TipoToken', 'verify')
+                 ->where('Usado', 0)
+                 ->where('TiempoExpiracion', '>', now())
+                 ->first();
+
+    if (!$token) {
+        return redirect()->route('registro')
+            ->with('error', 'Token de verificación inválido o expirado');
+    }
+
+    $usuario = $token->usuario;
+    if (!$usuario) {
+        return redirect()->route('registro')
+            ->with('error', 'Usuario no encontrado');
+    }
+
+    $usuario->update(['verificado' => 1]);
     
+    $token->Usado = 1;
+    $token->save();
+
+    return redirect()->route('registro')
+        ->with('success', 'Email verificado correctamente. Ya puedes iniciar sesión.');
+}
+
   
     public function showPasswordRecoveryForm()
     {

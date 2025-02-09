@@ -77,3 +77,35 @@ Route::get('recuperar-contraseña', function() {
 })->name('recuperar-contraseña');
 
 Route::get('/ramas/{carrera}', [RamasController::class, 'showBranches'])->name('ramas.show');
+
+
+
+use App\Http\Controllers\CarreraController;
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    // Ruta para ver todas las carreras
+    Route::get('admin/carreras', [CarreraController::class, 'index'])->name('admin.carreras.index');
+    
+    // Ruta para crear una carrera
+    Route::get('admin/carreras/create', [CarreraController::class, 'create'])->name('admin.carreras.create');
+    Route::post('admin/carreras', [CarreraController::class, 'store'])->name('admin.carreras.store');
+
+    // Ruta para editar una carrera
+    Route::get('admin/carreras/{carrera}/edit', [CarreraController::class, 'edit'])->name('admin.carreras.edit');
+    Route::put('admin/carreras/{carrera}', [CarreraController::class, 'update'])->name('admin.carreras.update');
+
+    // Ruta para eliminar una carrera
+    Route::delete('admin/carreras/{carrera}', [CarreraController::class, 'destroy'])->name('admin.carreras.destroy');
+});
+
+Route::middleware('role:admin')->group(function () {
+    Route::resource('admin/carreras', CarreraController::class);
+});
+
+Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function() {
+    Route::resource('carreras', CarreraController::class);
+});
+
+Route::get('/admin/dashboard', [LoginController::class, 'adminDashboard'])
+    ->name('admin.dashboard')
+    ->middleware('role:admin');
